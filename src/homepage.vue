@@ -20,14 +20,14 @@ MAIN PAGE STRUCTURE BEGINS HERE
     <!-- App bar displayed at the top of the page -->
     <v-app-bar :elevation="6" color=#B2B2B2>
       <template v-slot:prepend>
-        <v-icon icon = "$chLogo" size=65 @click="iconClicked"/>
+        <v-icon icon = "$chLogo" size=65 to="/"/>
       </template>
       <v-divider :thickness="5" class="mx3" inset vertical />
 
       <v-app-bar-title class="text-h4 font-weight-bold">ClubHub</v-app-bar-title>
 
       <template v-slot:append>
-        <v-btn append-icon="mdi-account">Login</v-btn>
+        <v-btn append-icon="mdi-account" to="/login">Login</v-btn>
 
         <v-btn icon="mdi-dots-vertical"></v-btn>
       </template>

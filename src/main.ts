@@ -9,6 +9,11 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
+//router
+import { createMemoryHistory, createRouter } from 'vue-router'
+import HomePage from './homepage.vue'
+import LoginPage from './loginPage.vue'
+
 //import fonts
 import '@/plugins/fontSources'
 
@@ -17,6 +22,16 @@ import '@/styles/main.scss'
 
 //Importing custom clubhub logo svg icon
 import chLogoComponent from './components/icon.vue'
+
+const routes = [
+  { path: '/', component: HomePage },
+  { path: '/login', component: LoginPage },
+]
+
+export const router = createRouter({
+  history: createMemoryHistory(),
+  routes,
+})
 
 const vuetify = createVuetify({
   components,
@@ -46,4 +61,11 @@ const vuetify = createVuetify({
   },
 })
 
-createApp(App).use(vuetify).mount('#app')
+const app = createApp(App);
+
+app.use(vuetify);
+app.use(router);
+
+app.mount('#app');
+
+

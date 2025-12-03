@@ -12,11 +12,7 @@
     }
   ],
   "compilerOptions": {
-    "target": "ESNext",
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true,
-    "lib": ["ESNext", "DOM"],       
-    "skipLibCheck": true             
+    "noImplicitAny": false,
+    "allowJs": true,
   }
-
 }

@@ -76,22 +76,44 @@ Rules for Form Inputs
       <v-container>
         <v-row justify="center">
           <v-column >
-            <v-card class = "bg-primary mt-10" height="500" width="400">
+            <v-card class = "bg-primary mt-10" height="800" width="400">
               <v-card-title class="ml-3 mt-3 mb-10">
-                <h1>Welcome <br/>
-                Back.</h1>
+                <h1>Let's take your <br/>
+                club to the next <br/> level.</h1>
               </v-card-title>
             </v-card>
           </v-column>
           <v-column>
-            <v-card class = "mt-10" height="500" width="400" text>
+            <v-card class = "mt-10" height="800" width="400" text>
 
               <v-card-title class="text-center">
-                <h1>Sign In</h1>
+                <h1>Register</h1>
               </v-card-title>
 
               <v-container class="ml-3">
                 <v-form v-model="valid" class="mt-7">
+
+                  <v-row
+                  >
+                    <v-text-field
+                      v-model="firstname"
+                      :rules="nameRules"
+                      label="First name"
+                      required
+                      class="mr-6 mb-5"
+                    ></v-text-field>
+                  </v-row>
+
+                  <v-row
+                  >
+                    <v-text-field
+                      v-model="lastname"
+                      :rules="nameRules"
+                      label="Last name"
+                      required
+                      class="mr-6 mb-5"
+                    ></v-text-field>
+                  </v-row>
 
                   <v-row
                   >

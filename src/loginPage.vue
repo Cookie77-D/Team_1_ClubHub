@@ -80,8 +80,9 @@ async function handleSubmit() {
 
       <v-container>
         <v-row justify="center">
-          <v-column >
-            <v-card class = "bg-primary mt-10" height="500" width="400">
+          <!-- LEFT COLUMN: welcome card -->
+          <v-col>
+            <v-card class="bg-primary mt-10" height="500" width="400">
               <v-card-title class="ml-3 mt-3 mb-10">
                 <h1>Welcome <br/>
                 Back.</h1>
@@ -91,15 +92,17 @@ async function handleSubmit() {
           <v-column>
             <v-card class = "mt-10" height="500" width="400" text>
 
+          <!-- RIGHT COLUMN: login card -->
+          <v-col>
+            <v-card class="mt-10" height="500" width="400">
               <v-card-title class="text-center">
                 <h1>Sign In</h1>
               </v-card-title>
 
               <v-container class="ml-3">
-                <v-form v-model="valid" class="mt-7">
-
-                  <v-row
-                  >
+                <!-- NOTE: @submit.prevent calls our handleSubmit -->
+                <v-form v-model="valid" class="mt-7" @submit.prevent="handleSubmit">
+                  <v-row>
                     <v-text-field
                       v-model="email"
                       :rules="emailRules"
@@ -110,14 +113,21 @@ async function handleSubmit() {
                   </v-row>
 
                   <v-row>
-                      <v-text-field
-                        v-model="password"
-                        :rules="passwordRules"
-                        label="Password"
-                        type ="password"
-                        required
-                        class="mr-6"
-                      ></v-text-field>
+                    <v-text-field
+                      v-model="password"
+                      :rules="passwordRules"
+                      label="Password"
+                      type="password"
+                      required
+                      class="mr-6"
+                    />
+                  </v-row>
+
+                  <!-- error from backend -->
+                  <v-row v-if="error" class="mt-3">
+                    <v-alert type="error" variant="tonal" class="mr-6">
+                      {{ error }}
+                    </v-alert>
                   </v-row>
 
                   <v-row class="justify-center">

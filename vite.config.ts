@@ -21,6 +21,7 @@ export default defineConfig({
     vueDevTools(),
     vuetify(),
   ],
+  base: '/ClubHub1/Team_1_ClubHub/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

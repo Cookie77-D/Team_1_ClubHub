@@ -6,7 +6,7 @@ const app = express();
 app.use (express.json());
 
 app.use(cors({
-    origin: 'https://supreme-space-yodel-5173.app.github.dev',
+    origin: 'https://supreme-space-yodel-5173.app.github.dev',  //need to change later
     credentials: true,
 }));
 
@@ -50,4 +50,10 @@ app.post('/auth/login', (req, res) => {
         },
         organizations: user.organizations,
     });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Backend listening on port ${PORT}`);
+    
 });

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-      import { ref } from 'vue'
+      import { onMounted, ref } from 'vue'
       import { useRouter } from 'vue-router'
       import Icon from './components/icon.vue'
 
@@ -7,6 +7,7 @@
 
       function iconClicked() {
             //direct back to homepage
+            router.push('/')
       }
 
       const links = [
@@ -16,6 +17,24 @@
       'Services',
       'Contact Us',
       ]
+
+      const searchQuery = ref("")
+      const selectedTags = ref<string[]>([])
+
+      const allTags = ref(["Sports", "Technology", "Arts", "Community", "Academic", 
+                        "Competitive", "Volunteering", "Gaming", "Coding", "Music", 
+                        "Strategy", "Leadership"])
+
+      const clubs = ref([])
+
+      const headers = [
+            {title: "Club Name", key: "name"},
+            {title: "Tags", key: "tags"},
+            {title: "Description", key: "description"},
+      ]
+
+//Add logic for filter + fetching from backend
+
 </script>
 
 
@@ -24,32 +43,44 @@
             <v-main>
                   <v-container>
                         <v-row justify="center">
-                              <v-col cols="10" sm="8" md="6">
+                              <v-col cols="12" sm="8">
                                     <h1 class="text-h4 mb-4">Discover Clubs and Organizations</h1>
-                                    <v-text-field 
+                                    
+                                    <v-text-field
+                                    v-model="searchQuery" 
                                     label="Find a club"
                                     prepend-inner-icon="mdi-magnify"
                                     clearable
-                                    single-line
                                     hide-details></v-text-field>
-                              </v-col>
-                              <v-col cols="12" sm="8" md="6">
-                                    <v-select 
-                                    v-model="selectedCategory"
-                                    :items="categories"
-                                    lable="Category"
-                                    clearable></v-select>
                               </v-col>
                         </v-row>
 
-                        <v-row>
-                              <v-col cols="12">
-                                    <v-data-table
-                                    :headers="headers"
-                                    :items="filteredItems"
-                                    :search="searchQuery"></v-data-table>
-                              </v-col>
-                        </v-row>
+                        <v-col cols="12" md="3">
+                              <v-card class="pa-4" elevation="2">
+                                    <h3 class="text-h6">Filters</h3>
+                                    <v-divider class="my-3"></v-divider>
+
+                                    <v-autocomplete
+                                    v-model="selectedTags"
+                                    :items="allTags"
+                                    multiple
+                                    chips
+                                    clearable
+                                    class="mt-4"
+                                    label="Filter by Tags"></v-autocomplete>
+                              </v-card>
+                        </v-col>
+
+                        <v-col cols="12" md="9">
+                              <v-data-table
+                              :headers="headers"
+                              :items="filteredItems"
+                              :search="searchQuery"
+                              class="elevation-2"></v-data-table>
+                        </v-col>
+
+                            
+                        
                   </v-container>
             </v-main>
       </v-app>

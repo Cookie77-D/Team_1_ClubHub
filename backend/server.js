@@ -19,13 +19,18 @@ app.use(
 );
 
 // ----- PostgreSQL connection -----
+require("dotenv").config();
+const { Pool } = require("pg");
+
 const pool = new Pool({
-  host: 'localhost',     // change if your DB is in Docker or remote
-  port: 5432,
-  user: 'chadmin',       // your db user
-  password: 'password', ///change to db password
-  database: 'name', /// change to db name 
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT,
 });
+
+module.exports = pool;
 
 // ----- JWT secret (for tokens) -----
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
